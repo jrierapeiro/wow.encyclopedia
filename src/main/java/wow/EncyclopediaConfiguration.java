@@ -8,7 +8,7 @@ import javax.validation.constraints.*;
 import java.util.Collections;
 import java.util.Map;
 
-public class encyclopediaConfiguration extends Configuration {
+public class EncyclopediaConfiguration extends Configuration {
     @NotNull
     private Map<String, Map<String, String>> urlsConfiguration = Collections.emptyMap();
 

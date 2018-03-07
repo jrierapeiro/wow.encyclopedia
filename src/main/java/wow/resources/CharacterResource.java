@@ -14,9 +14,11 @@ import java.util.Optional;
 @Produces(MediaType.APPLICATION_JSON)
 public class CharacterResource {
     private final Map<String, Map<String, String>> urlsConfiguration;
+    private final BattleNetClient battleNetClient;
 
-    public CharacterResource(Map<String, Map<String, String>> urlsConfiguration) {
+    public CharacterResource(Map<String, Map<String, String>> urlsConfiguration, BattleNetClient battleNetClient) {
         this.urlsConfiguration = urlsConfiguration;
+        this.battleNetClient = battleNetClient;
     }
 
     @GET
@@ -24,7 +26,6 @@ public class CharacterResource {
     public Character getCharacter(@PathParam("realm") String realm, @PathParam("characterName") String characterName,  @QueryParam("locale") Optional<String> locale) {
         // https://eu.api.battle.net/wow/character/dun%20modr/kalitus?locale=en_GB&apikey=rhmt4p8kgq6s5uygr4y477vajrsep4rs
         final String definedLocale =  locale.orElse("en_GB");
-        final BattleNetClient battleNetClient = new BattleNetClient(urlsConfiguration.get("battleNetApi"));
         return battleNetClient.getCharacterData(realm, characterName, definedLocale);
     }
 }

@@ -3,7 +3,6 @@ package wow.client;
 import wow.api.Character;
 
 import org.glassfish.jersey.client.JerseyClient;
-import org.glassfish.jersey.client.JerseyClientBuilder;
 
 import java.util.Map;
 import javax.ws.rs.client.Invocation;
@@ -13,15 +12,15 @@ import javax.ws.rs.core.Response;
 
 public class BattleNetClient {
     private final Map<String, String> battleNetApiConfiguration;
+    private final JerseyClient client;
 
-    public BattleNetClient(Map<String, String> battleNetApiConfiguration) {
+    public BattleNetClient(Map<String, String> battleNetApiConfiguration, JerseyClient client) {
         this.battleNetApiConfiguration = battleNetApiConfiguration;
+        this.client = client;
     }
 
     public Character getCharacterData(String realm, String characterName, String locale){
         // https://eu.api.battle.net/wow/character/dun%20modr/kalitus?locale=en_GB&apikey=rhmt4p8kgq6s5uygr4y477vajrsep4rs
-        final JerseyClient client = new JerseyClientBuilder().createClient();
-
         final String url = String.format("%s/character/%s/%s?locale=%s&apikey=%s",
                 this.battleNetApiConfiguration.get("url"),
                 realm,
