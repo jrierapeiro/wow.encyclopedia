@@ -24,7 +24,7 @@ hs_err_pid*
 .idea/*
 
 # exclude target forlde
-target/*
+# target/*
 
 # do not commit keys
 config.yml
