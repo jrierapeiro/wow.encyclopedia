@@ -14,7 +14,7 @@ Health Check
 
 To see your applications health enter url `http://localhost:8081/healthcheck`
 
-# Example config.yml
+## Example config.yml
 
 urlsConfiguration:
   battleNetApi:
